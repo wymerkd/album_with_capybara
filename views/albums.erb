@@ -2,6 +2,18 @@
 
 <h3>Available Records</h3>
 
+<form action="/albums">
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input id="search" name="search" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Go!</button>
+</form>
+
+<% @albums.each do |album| %>
+    <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+  <% end %>
+
 <% if @albums.any? %>
   <ul>
     <% @albums.each do |album| %>
