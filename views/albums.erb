@@ -7,21 +7,32 @@
     <label for="search">Search</label>
     <input id="search" name="search" class="form-control" type="text">
   </div>
-  <button type="submit" class="btn">Go!</button>
+  <button type="submit" class="danger">Go!</button>
 </form>
 
-<% @albums.each do |album| %>
-    <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
-  <% end %>
+<form action="/albums" method="get">
+  <input name="_method" type="hidden" value="clear">
+  <button type="submit" name="clear">Clear Results</button>
+</form>
+
+
+
+
+
+
+
 
 <% if @albums.any? %>
-  <ul>
-    <% @albums.each do |album| %>
-      <li><%= album.name %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% @albums.each do |album| %>
+  <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+  <li><%= album.year %></li>
+  <li><%= album.genre %></li>
+  <li><%= album.artist %></li>
+  <% end %>
+</ul>
 <% else %>
-  <p>There are currently no records to display.</p>
+<p>There are currently no records to display.</p>
 <% end %>
 
 <a href="/albums/new">Add a new album</a>

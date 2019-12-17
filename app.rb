@@ -15,9 +15,12 @@ get('/') do
 end
 
 get('/albums') do
-  # binding.pry
+  if params["clear"]
+  @albums = Album.clear()
+else
   @albums = Album.all
-  erb(:albums)
+end
+erb(:albums)
 end
 
 get('/albums/new') do
@@ -26,7 +29,10 @@ end
 
 post('/albums') do
   name = params[:album_name]
-  album = Album.new(name, nil)
+  year = params[:year_name]
+  genre = params[:genre_name]
+  artist = params[:artist_name]
+  album = Album.new(name, nil, year, genre, artist)
   album.save()
   @albums = Album.all()
   erb(:albums)
@@ -55,6 +61,7 @@ delete('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
+
 
 # get('/custom_route') do
 #   "We can even create custom routes, but we should only do this when needed."
