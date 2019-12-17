@@ -19,6 +19,7 @@ get('/albums') do
     @albums = Album.clear()
   elsif params["search_input"]
     @albums = Album.search(params["search_input"])
+    
   else
     @albums = Album.all
   end
