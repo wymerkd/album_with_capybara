@@ -16,11 +16,13 @@ end
 
 get('/albums') do
   if params["clear"]
-  @albums = Album.clear()
-else
-  @albums = Album.all
-end
-erb(:albums)
+    @albums = Album.clear()
+  elsif params["search_input"]
+    @albums = Album.search(params["search_input"])
+  else
+    @albums = Album.all
+  end
+  erb(:albums)
 end
 
 get('/albums/new') do
@@ -61,6 +63,7 @@ delete('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
+
 
 
 # get('/custom_route') do

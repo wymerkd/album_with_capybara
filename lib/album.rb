@@ -13,8 +13,8 @@ class Album
   end
 
   def update(name)
-   @name = name
- end
+    @name = name
+  end
 
   def save
     @@albums[self.id] = Album.new(self.name, self.id, self.year, self.genre, self.artist)
@@ -41,4 +41,14 @@ class Album
     @@albums.delete(self.id)
   end
 
+  def self.sort
+    @@albums.values.sort {|a, b| a.name <=> b.name}
+  end
+
+  def self.search(x)
+    @@albums.values.select { |e| /#{x}/i.match? e.name}
+  end
+
 end
+
+ # reg ex = {paramter passed in}/(not case sensitive)

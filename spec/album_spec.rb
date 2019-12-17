@@ -96,5 +96,27 @@ describe '#Album' do
     end
   end
 
+  describe('#sort') do
+    it("Sort list of albums by name") do
+      album = Album.new("Attack of the Living Trance Zombies", nil, nil, "psytrance", nil)
+        album.save()
+        album2 = Album.new("Wolf Piss", nil, nil, "shit", nil)
+        album2.save()
+        album3 = Album.new("Werewolves in the Day", nil, nil, "disco house", nil)
+        album3.save()
+      expect(Album.sort).to(eq([album, album3, album2]))
+    end
+  end
+
+  describe('.search') do
+    it("search album on list of albums") do
+      album = Album.new("Attack of the Living Trance Zombies", nil, nil, "psytrance", nil)
+      album.save()
+      album2 = Album.new("Wolf Piss", nil, nil, "shit", nil)
+      album2.save()
+      expect(Album.search("Wolf")).to(eq([album2]))
+    end
+  end
+
 
 end
