@@ -1,4 +1,14 @@
-<h1>All Sales Vinyl</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel=”stylesheet” type=”text/css” href=”../public/styles.css”/>
+  <title>All Sales Vinyl</title>
+</head>
+<body>
+  <div class="container">
+    <h1>All Sales Vinyl</h1>
 
 <h3>Available Records</h3>
 
@@ -39,17 +49,10 @@
 
 
 
-<% if @albums.any? %>
-<ul>
-  <% @albums.each do |album| %>
-  <h4><a href="/albums/<%= album.id %>"><%= album.name %></a></h4>
-  <li>Release year: <%= album.year %></li>
-  <li>Genre: <%= album.genre %></li>
-  <li>Artist: <%= album.artist %></li>
-  <% end %>
-</ul>
-<% else %>
 <p>There are currently no records to display.</p>
-<% end %>
 
 <a href="/albums/new">Add a new album</a>
+
+  </div>
+</body>
+</html>

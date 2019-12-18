@@ -12,8 +12,11 @@ class Album
     @artist = artist
   end
 
-  def update(name)
+  def update(name, year, genre, artist)
     @name = name
+    @year = year
+    @genre = genre
+    @artist = artist
   end
 
   def save
@@ -42,11 +45,15 @@ class Album
   end
 
   def self.sort
-    @@albums.values.sort {|a, b| a.name <=> b.name}
+    @@albums.values.sort {|a, b| a.name.downcase <=> b.name.downcase}
   end
 
   def self.search(x)
     @@albums.values.select { |e| /#{x}/i.match? e.name}
+  end
+
+  def songs                         #find songs by album
+    Song.find_by_album(self.id)
   end
 
 end
