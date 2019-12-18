@@ -11,14 +11,14 @@
 </form>
 
 <form action="/albums" method="get">
-  <input name="_method" type="hidden" value="clear">
+  <input name="clear_inputs" type="hidden" value="clear">
   <button type="submit" name="clear">Clear Results</button>
 </form>
 
-<!-- <form action="/albums" method="get">
-  <input name="_method" type="hidden" value="search">
-  <button type="submit" name="clear">Search</button>
-</form> -->
+<form action="/albums" method="get">
+  <input name="sort_list" type="hidden" value="search">
+  <button type="submit">Sort List</button>
+</form>
 
 <!-- <label  class = "select" for="size">Select the size of your pie</label>
         <select class="form-control" id="size">
@@ -42,7 +42,7 @@
 <% if @albums.any? %>
 <ul>
   <% @albums.each do |album| %>
-  <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
+  <h4><a href="/albums/<%= album.id %>"><%= album.name %></a></h4>
   <li><%= album.year %></li>
   <li><%= album.genre %></li>
   <li><%= album.artist %></li>
