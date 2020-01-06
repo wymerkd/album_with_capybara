@@ -1,5 +1,5 @@
 class Album
-  attr_accessor :name
+  attr_accessor :name, :id
 
   # Class variables have been removed.
 
@@ -27,15 +27,18 @@ def save
   result = DB.exec("INSERT INTO albums (name) VALUES ('#{@name}') RETURNING id;")
   @id = result.first().fetch("id").to_i
 end
+
 def self.clear
   DB.exec("DELETE FROM albums *;")
 end
+
 def self.find(id)
   album = DB.exec("SELECT * FROM albums WHERE id = #{id};").first
   name = album.fetch("name")
   id = album.fetch("id").to_i
   Album.new({:name => name, :id => id})
 end
+
 def update(name)
   @name = name
   DB.exec("UPDATE albums SET name = '#{@name}' WHERE id = #{@id};")
